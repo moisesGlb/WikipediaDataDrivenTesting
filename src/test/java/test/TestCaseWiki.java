@@ -16,29 +16,16 @@ import pages.WikiHomePage;
 import pages.WikiResultadoPage;
 
 
-
 public class TestCaseWiki {
     WebDriver driver;
 
- /*   @DataProvider(name = "datos")
-    public Object[][] createData() {
-        return new Object[][]{
-                {"Selenium", "Selenium","Selenium"},
-                {"TDD", "Desarrollo_guiado_por_pruebas","Desarrollo guiado por pruebas"},
-                {"JAVA", "Java (lenguaje_de_programa)","lenguaje de programa"},
-                {"DATA DRIVEN TESTING", "Data-driven_testing","Data-driven testing"}
-        };
-    }*/
-
-    @DataProvider (name = "SearchWikipedia")
+    @DataProvider(name = "SearchWikipedia")
     public Object[][] DatosNuevos() throws Exception {
-        String excelPath = "src\\Resources\\Recursos\\Data\\TestData.xlsx";
+        String excelPath = System.getProperty("user.dir") + "\\src\\test\\resources\\excel\\testData.xlsx";
         String hoja = "testData";
         ExcelHandler.setExcelFile(excelPath, hoja);
         int iTestCaseRow = ExcelHandler.getRowUsed();
-        Object[][] testObjArray = ExcelHandler.getTableArray(excelPath, hoja, iTestCaseRow, 2);
-
-        return (testObjArray);
+        return ExcelHandler.getTableArray(excelPath, hoja, iTestCaseRow, 3);
     }
 
     @BeforeMethod
